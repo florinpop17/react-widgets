@@ -12,18 +12,34 @@ class App extends Component {
     state = {
         headData: dummyHeadData,
         bodyData: dummyBodyData,
+        searchText: ''
+    }
+
+    handleSearchInputChange = (e) => {
+        this.setState({ searchText: e.target.value });
     }
 
     render() {
-        const { headData, bodyData } = this.state;
+        const { headData, bodyData, searchText } = this.state;
 
         return (
             <div className="container">
                 <h1>Table example:</h1>
+                <div className="input-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search term"
+                        value={searchText}
+                        onChange={this.handleSearchInputChange}
+                    />
+                </div>
+                <br />
                 <Table 
                     headData={headData}
                     bodyData={bodyData}
                     tableType={'striped'}
+                    filterText={searchText}
                 />
             </div>
         );

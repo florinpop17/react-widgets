@@ -42,8 +42,11 @@ class Table extends Component{
     }
 
     render() {
-        const { tableType } = this.props;
+        const { filterText, tableType } = this.props;
         const { headData, bodyData } = this.state;
+
+        const filteredBodyData = bodyData.filter(row => row.find(data => data.toLowerCase().includes(filterText.toLowerCase())));
+
         return (
             <table className={`table table-${tableType}`}>
                 <thead>
@@ -54,7 +57,7 @@ class Table extends Component{
                     </tr>
                 </thead>
                 <tbody>
-                    { bodyData && bodyData.map((rowData, idx) => (
+                    { filteredBodyData && filteredBodyData.map((rowData, idx) => (
                         <tr key={idx}>
                             { rowData && rowData.map((data, idx) => (
                                 <td key={idx}>{ data }</td>
@@ -69,13 +72,15 @@ class Table extends Component{
 
 Table.defaultProps = {
     headData: [],
-    bodyData: [[]]
+    bodyData: [[]],
+    filterText: ''
 };
 
 Table.propTypes = {
     headData: PropTypes.arrayOf(PropTypes.string).isRequired,
     bodyData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
-    tableType: PropTypes.string
+    tableType: PropTypes.string,
+    filterText: PropTypes.string
 };
 
 export default Table;
