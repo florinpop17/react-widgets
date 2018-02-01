@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Table } from './Widgets';
+
+const dummyHeadData = ['#', 'Name', 'Age'];
+const dummyBodyData = [
+    ['1', 'Alex', '23'],
+    ['2', 'Jenny', '33'],
+    ['3', 'Bill', '18']
+]
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    state = {
+        headData: dummyHeadData,
+        bodyData: dummyBodyData
+    }
+
+    render() {
+        const { headData, bodyData } = this.state;
+
+        return (
+            <div>
+                <h1>Table example:</h1>
+                <Table headData={headData} bodyData={bodyData} />
+            </div>
+        );
+    }
 }
 
 export default App;
