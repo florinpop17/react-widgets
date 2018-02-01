@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Table = ({ headData, bodyData }) => (
-    <table>
+const Table = ({ headData, bodyData, tableType }) => (
+    <table className={`table table-${tableType}`}>
         <thead>
             <tr>
                 { headData.map(data => (

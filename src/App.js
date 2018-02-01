@@ -11,16 +11,20 @@ const dummyBodyData = [
 class App extends Component {
     state = {
         headData: dummyHeadData,
-        bodyData: dummyBodyData
+        bodyData: dummyBodyData,
     }
 
     render() {
         const { headData, bodyData } = this.state;
 
         return (
-            <div>
+            <div className="container">
                 <h1>Table example:</h1>
-                <Table headData={headData} bodyData={bodyData} />
+                <Table 
+                    headData={headData}
+                    bodyData={bodyData}
+                    tableType={'striped'}
+                />
             </div>
         );
     }
